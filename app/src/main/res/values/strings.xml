@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">BPM</string>
+    <string name="login_label">Welcom!</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Пароль</string>
+    <string name="login_button">Let`s measure</string>
+
+    <string name="menu_add">Add</string>
+    <string name="menu_me">Me</string>
+    <string name="menu_list">List</string>
+
+    <string name="add_title">New measurement</string>
+    <string name="add_date">Date and time</string>
+    <string name="add_arterial">Arterial</string>
+    <string name="add_venous">Venous</string>
+    <string name="add_pulse">Pulse</string>
+    <string name="add_activity">Activity</string>
+    <string name="add_feeling">Feeling</string>
+
+    <string name="edit_title">Edit measurement</string>
+</resources>

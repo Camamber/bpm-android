@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:gravity="center"
+    android:orientation="vertical"
+
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/login_label"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="14pt" />
+
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:hint="@string/username_hint"
+        android:textColor="@color/colorPrimaryText"
+        android:textColorHint="@color/colorPrimaryTextDark"
+        android:textSize="8pt" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:text="@string/login_button"
+        android:textColor="@color/colorPrimaryText" />
+
+</LinearLayout>
