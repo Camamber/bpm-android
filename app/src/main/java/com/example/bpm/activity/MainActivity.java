@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.bpm.R;
 import com.example.bpm.database.AppDatabase;
@@ -15,8 +14,16 @@ import com.example.bpm.fragment.MeasurementsFragment;
 import com.example.bpm.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
+/** Represents an MainActivity View and handle View Events.
+ * @author Yehor Kaliuzhniy
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /** Called on view creation super function
+     * init menu handlers
+     * @author Yehor Kaliuzhniy
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         AppDatabase.getAppDatabase(this);
     }
 
+    /** Called when view destroying
+     * @author Yehor Kaliuzhniy
+     */
     @Override
     protected void onDestroy() {
         AppDatabase.destroyInstance();

@@ -2,9 +2,6 @@ package com.example.bpm;
 
 import android.content.Context;
 
-import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -31,6 +28,9 @@ public class MeasurementTest {
     private MeasurementDao measurementDao;
     private AppDatabase db;
 
+    /** Create fake db in memory before test starts
+     * @author Yehor Kaliuzhniy
+     */
     @Before
     public void createDb() {
         Context context = ApplicationProvider.getApplicationContext();
@@ -38,11 +38,17 @@ public class MeasurementTest {
         measurementDao = db.measurementDao();
     }
 
+    /** Delete fake db and clear memory after all
+     * @author Yehor Kaliuzhniy
+     */
     @After
     public void closeDb() throws IOException {
         db.close();
     }
 
+    /** Test the insertion and fetching by id
+     * @author Yehor Kaliuzhniy
+     */
     @Test
     public void insertAndSelectTest() throws Exception {
         Measurement measurement = new Measurement(new Date(), 120, 60, 75, 'a', 'g', 's');
@@ -52,6 +58,10 @@ public class MeasurementTest {
         assertEquals(byId.measuredAt, measurement.measuredAt);
     }
 
+    /** Test slect for period functionality
+     * fill temporary db with fake measurements and then select range
+     * @author Yehor Kaliuzhniy
+     */
     @Test
     public void selectForPeriodTest() throws Exception {
         Calendar c = Calendar.getInstance();
@@ -68,11 +78,16 @@ public class MeasurementTest {
         c.setTime(now);
         c.add(Calendar.DATE, 5);
 
-        LiveData<List<MeasurementEvent>> forPeriod = measurementDao.findForPeriod(now, c.getTime());
-        assertEquals(forPeriod.getValue().size(), 5);
+        List<MeasurementEvent> forPeriod = measurementDao.findForPeriodTest(now, c.getTime());
+        assertEquals(forPeriod.size(), 5);
 
     }
 
+    /** Test the update
+     * crete measurement then fetch it and change param
+     * update and again fetch it to check if it updated
+     * @author Yehor Kaliuzhniy
+     */
     @Test
     public void updateTest() throws Exception {
         Measurement measurement = new Measurement(new Date(), 120, 60, 75, 'a', 'g', 's');
@@ -86,6 +101,10 @@ public class MeasurementTest {
         assertEquals(updated.pulse, 85);
     }
 
+    /** Test delete function
+     * Create record then fetch it, delet and again fetch to get null
+     * @author Yehor Kaliuzhniy
+     */
     @Test
     public void deleteTest() throws Exception {
         Measurement measurement = new Measurement(new Date(), 120, 60, 75, 'a', 'g', 's');

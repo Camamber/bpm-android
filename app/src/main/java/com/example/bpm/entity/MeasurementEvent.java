@@ -8,6 +8,9 @@ import com.example.bpm.convertor.DateConverter;
 
 import java.util.Date;
 
+/** Represent a measurement event model
+ * @author Yehor Kaliuzhniy
+ */
 public class MeasurementEvent {
     @PrimaryKey(autoGenerate = true)
     public long id;

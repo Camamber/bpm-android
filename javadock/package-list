@@ -1,0 +1,8 @@
+com.example.bpm
+com.example.bpm.activity
+com.example.bpm.convertor
+com.example.bpm.dao
+com.example.bpm.database
+com.example.bpm.entity
+com.example.bpm.fragment
+com.example.bpm.validator

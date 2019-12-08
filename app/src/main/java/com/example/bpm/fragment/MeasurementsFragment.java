@@ -26,10 +26,17 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+
+/** Represents an Measurement Ad fragment and handle View Events.
+ * @author Yehor Kaliuzhniy
+ */
 public class MeasurementsFragment extends Fragment {
 
+    /** Represents an Measurement calendar view. */
     CompactCalendarView compactCalendarView;
+    /** Represents an MeasurementDao object for DB manipulation. */
     MeasurementDao measurementDao;
+    /** Represents an Measurements live data collection. */
     LiveData<List<MeasurementEvent>> liveDataMeasurementEvents;
 
     @Nullable
@@ -73,6 +80,10 @@ public class MeasurementsFragment extends Fragment {
         }
     };
 
+    /** intit live data object for automattion updates
+     * @author Yehor Kaliuzhniy
+     * @return LiveData<List<MeasurementEvent>>
+     */
     private LiveData<List<MeasurementEvent>> initLiveData() {
         // get today and clear time of day
         Calendar cal = Calendar.getInstance();
@@ -90,6 +101,9 @@ public class MeasurementsFragment extends Fragment {
         return measurementDao.findForPeriod(startDate, endDate);
     }
 
+    /** attach live data observer to automaticaly change state
+     * @author Yehor Kaliuzhniy
+     */
     private void observeLiveData() {
         liveDataMeasurementEvents.observe(this, new Observer<List<MeasurementEvent>>() {
             @Override

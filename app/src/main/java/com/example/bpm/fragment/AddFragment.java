@@ -10,15 +10,11 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.room.Room;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import com.example.bpm.MeasurementDBHelper;
 import com.example.bpm.R;
 import com.example.bpm.dao.MeasurementDao;
 import com.example.bpm.database.AppDatabase;
@@ -27,8 +23,12 @@ import com.example.bpm.validator.DateTimeValidator;
 import com.example.bpm.validator.PressureValidator;
 import com.example.bpm.validator.PulseValidator;
 
+/** Represents an Measurement Ad fragment and handle View Events.
+ * @author Yehor Kaliuzhniy
+ */
 public class AddFragment extends Fragment {
 
+    /** Represent all user interfaces interactive elements */
     Button btnAdd;
     int arterial, venous, pulse;
     EditText etMeasuredAt, etArterial, etVenous, etPulse;
@@ -50,6 +50,7 @@ public class AddFragment extends Fragment {
         return view;
     }
 
+    /** On buttin add handler */
     private View.OnClickListener onBtnAdd = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -68,6 +69,10 @@ public class AddFragment extends Fragment {
         }
     };
 
+
+    /** Clear old user input
+     * @author Yehor Kaliuzhniy
+     */
     private void clearFields() {
         etMeasuredAt.setText(getCurrentDate());
         etArterial.setText("");
@@ -75,6 +80,11 @@ public class AddFragment extends Fragment {
         etPulse.setText("");
     }
 
+    /** validate all user input
+     * @author Yehor Kaliuzhniy
+     * @return boolean
+     * the result of validation is true if valid
+     */
     private boolean validate() {
         if (!DateTimeValidator.validate(etMeasuredAt.getText().toString())) {
             Toast toast = Toast.makeText(getContext(),
@@ -110,6 +120,10 @@ public class AddFragment extends Fragment {
         return true;
     }
 
+    /** get current formatted date
+     * @author Yehor Kaliuzhniy
+     * @return String formatted date
+     */
     private static String getCurrentDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         dateFormat.setTimeZone(TimeZone.getDefault());

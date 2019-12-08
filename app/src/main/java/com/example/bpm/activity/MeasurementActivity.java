@@ -26,14 +26,25 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+/** Represents an MeasurementActivity View and handle View Events.
+ * @author Yehor Kaliuzhniy
+ */
 public class MeasurementActivity extends AppCompatActivity {
 
+    /** Represents an MeasurementDao object for DB manipulation. */
     MeasurementDao measurementDao;
+    /** Represents an Measurement model. */
     Measurement measurement;
 
+    /** Represent all user interfaces interactive elements
+     */
     EditText etMeasuredAt, etArterial, etVenous, etPulse;
     Button btnSave, btnDelete;
 
+    /** Called on view creation super function
+     * init menu handlers
+     * @author Yehor Kaliuzhniy
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +72,9 @@ public class MeasurementActivity extends AppCompatActivity {
         initMeasurement();
     }
 
+    /** fetch measuremnt from DB and fill all editTexts with right params
+     * @author Yehor Kaliuzhniy
+     */
     private void initMeasurement() {
         Bundle b = getIntent().getExtras();
         long id = b.getLong("id");
@@ -72,6 +86,11 @@ public class MeasurementActivity extends AppCompatActivity {
         etPulse.setText(String.valueOf(measurement.pulse));
     }
 
+    /** Convert date object to string in right format
+     * @author Yehor Kaliuzhniy
+     * @param date date that will be formatted
+     * @return String with formatted date
+     */
     private String formatDate(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         dateFormat.setTimeZone(TimeZone.getDefault());
@@ -100,6 +119,11 @@ public class MeasurementActivity extends AppCompatActivity {
         }
     };
 
+    /** validate all user input
+     * @author Yehor Kaliuzhniy
+     * @return boolean
+     * the result of validation is true if valid
+     */
     private boolean validate() {
         if (!DateTimeValidator.validate(etMeasuredAt.getText().toString())) {
             Toast toast = Toast.makeText(getApplicationContext(),
